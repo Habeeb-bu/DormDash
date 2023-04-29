@@ -1,0 +1,33 @@
+.closeBtn {
+    font-size: 18px;
+    border-radius: 30px;
+    color: white;
+    background-color: #FF3008;
+    padding: 8px 12px;
+    display: inline-block;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: background 0.4s;
+    
+}
+
+.closeBtn:hover{
+    background-color: black;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    position: relative;
+    width: 400px;
+    height: 605px;
+    padding: 28px 32px;
+    border-radius: 18px;
+}
