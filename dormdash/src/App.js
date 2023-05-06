@@ -1,10 +1,10 @@
 import './App.css';
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from './Home.js';
-import OrderFood from './OrderFood.js';
-import OrderConfirmed from './OrderConfirmed';
-import Nav from './Nav';
+import Home from './Components/Home.js';
+import OrderFood from './Components/OrderFood.js';
+import OrderConfirmed from './Components/OrderConfirmed';
+import Nav from './Components/Nav';
 
 export default function App() {
   return (
@@ -15,7 +15,7 @@ export default function App() {
             <Route path="/" element={<Nav />}>
               <Route index element={<Home />} />
               <Route path="orderfood" element={<OrderFood />} />
-              <Route path="orderconfirmed" element={<OrderConfirmed />} />
+              <Route path="api/orderconfirmed" element={<OrderConfirmed />} />
             </Route>
           </Routes>
         </BrowserRouter>

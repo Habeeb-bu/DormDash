@@ -1,13 +1,31 @@
 import React from 'react';
+import '../orderfood.css';
+import { useEffect, useState } from 'react';
+import OrderDetails from './OrderDetails';
 
 const OrderFood = () => {
+  const [menus, setMenus] = useState(null)
+
+  useEffect(() => {
+    const fetchMenu = async () => {
+      const response = await fetch('/')
+      const json = await response.json()
+
+      if (response.ok) {
+        setMenus(json)
+      }
+    }
+
+    fetchMenu()
+  }, [])
+
   return (
     <>
       <form action='/api/orderconfirmed' method='POST'>
         <fieldset>
         <div>
           <p>Select Delivery Location</p>
-          <select name="delivery" id="" required>
+          <select name="delivery" id="delivery" required>
             <option value="">--Select--</option>
             <option value="7800yr">7800 York Rd</option>
             <option value="barnes">Barnes Hall</option>
@@ -34,7 +52,7 @@ const OrderFood = () => {
 
         <div>
           <p>Select Restaurant</p>
-          <select name="restaurant" id="" required onSelect={getMenu()}>
+          <select name="restaurant" id="restaurant" required>
             <option value="">--Select--</option>
             <option value="raisingcanes">Raising Canes</option>
           </select>
@@ -42,7 +60,21 @@ const OrderFood = () => {
 
         <br/><br/><br/>
 
-        <menu id="menu"></menu>
+        <div id="menu">
+          {menus && menus.map((menu) => (
+            <OrderDetails key={menu._id} menu={menu} />
+          ))}
+        </div>
+
+        <div id="card-info">
+            <h5>Enter Credit Card Info</h5>
+            <h6>Enter Name on Credit Card</h6>
+            <input type='number' name='cardname' id='cardname' />
+            <h6>Enter Credit Card Expiration Date</h6>
+            <input type='number' name='cardname' id='cardname' />
+            <h6>Enter Credit Card Security Code</h6>
+            <input type='number' name='cardname' id='cardname' />
+        </div>
 
         <div>
           <button type="submit">Submit Order</button>
@@ -52,30 +84,5 @@ const OrderFood = () => {
     </>
   )
 };
-
-async function getMenu() {
-  const response = await fetch();
-  const data = await response.json();
-
-  const dropdown = document.getElementById('menu');
-
-  for (const collection of data) {
-    if (collection.name === "Orders") {
-      continue
-    }
-
-    dropdown.innerHTML += `
-      <select name=${collection.name} id=${collection.name}>
-    `
-
-    for (const item of collection) {
-      dropdown.innerHTML += `
-        <option value=${item.name}>${item.name} + ${item.price}</option>
-      `
-    }
-
-    dropdown.innerHTML += '</select>'
-  }
-}
 
 export default OrderFood;

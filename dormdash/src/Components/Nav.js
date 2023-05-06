@@ -11,6 +11,7 @@ const Nav = () => {
           <li>
             <Link to="/orderfood">Order Food</Link>
           </li>
+          <Link to="/api/orderconfirmed">Order Confirmed</Link>
         </ul>
       </nav>
 

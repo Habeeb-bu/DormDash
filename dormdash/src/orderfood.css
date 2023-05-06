@@ -172,3 +172,7 @@ padding: 10px 30px;
 font-size: 15px;
 cursor: pointer;
 }
+
+.card-info {
+  border-radius: 10px;
+}
